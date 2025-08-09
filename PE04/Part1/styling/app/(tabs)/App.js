@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View} from 'react-native';   
+import { Text, Image, StyleSheet, View} from 'react-native';   
 
 
 export default class App extends Component {
@@ -9,8 +9,23 @@ export default class App extends Component {
                 <View style={styles.cardContainer}>
                     <View style={styles.cardImageContainer}>
                         <Image style={styles.cardImage}        
-                               source={require('../../assets/images/favicon.png')}/> 
+                               source={require('../../assets/images/user.png')}/> 
                     </View>
+                    <View>
+            <Text style={styles.cardName}> 
+              Khoa Nguyen
+            </Text>
+          </View>
+          <View style={styles.cardOccupationContainer}> 
+            <Text style={styles.cardOccupation}> 
+              ACS Undergrauate student
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.cardDescription}>
+              Khoa is a Student. He likes to code and draw.
+            </Text>
+          </View>
                 </View>
             </View>
         );
@@ -49,5 +64,23 @@ const styles = StyleSheet.create({
     cardImage: {       
         width: 80,
         height: 80
+    },
+    cardName: {   
+        color: 'white',
+        marginTop: 30,
+    },
+    cardOccupationContainer: {  
+        borderColor: 'black',
+        borderBottomWidth: 3
+    },
+    cardOccupation: {   
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    cardDescription: {  
+        marginTop: 10,
+        marginRight: 40,
+        marginLeft: 40,
+        marginBottom: 10
     }
 });
