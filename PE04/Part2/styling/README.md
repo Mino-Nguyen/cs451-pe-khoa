@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+# ProfileCard Scaling App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Input
+* Static data array containing 6 user profiles.
+  * Each profile has:
+    * `image` (local asset)
+    * `name` (string)
+    * `occupation` (string)
+    * `description` (string)
+    * `showThumbnail` (boolean)
 
-## Get started
+## Process
+1. Import necessary React, React Native, and supporting libraries.
+   1. `React`, `Component` from 'react'.
+   2. `PropTypes` for type checking props.
+   3. `immutability-helper` to update nested state immutably.
+   4. React Native components: `Platform`, `Image`, `StyleSheet`, `Text`, `View`, `ScrollView`, `TouchableHighlight`.
+2. Define a functional component **`ProfileCard`**.
+   1. Accepts props: `image`, `name`, `occupation`, `description`, `onPress`, `showThumbnail`.
+   2. Builds a `containerStyles` array:
+      1. Always includes `styles.cardContainer`.
+      2. Adds `styles.cardThumbnail` if `showThumbnail` is true.
+   3. Renders a `TouchableHighlight` that wraps:
+      1. Profile image inside a styled container.
+      2. Name, occupation, and description text blocks.
+3. Define the **`App`** class component.
+   1. Initialize state with the `data` array.
+   2. Create `handleProfileCardPress` method:
+      1. Toggles the `showThumbnail` boolean for the tapped profile.
+      2. Uses `immutability-helper` to update the state immutably.
+   3. In `render`:
+      1. Map over `this.state.data` to create a `ProfileCard` for each profile.
+      2. Pass down props including `onPress` bound to `handleProfileCardPress` for each card.
+      3. Render all `ProfileCard` components inside a `ScrollView` with `styles.container` for layout.
+4. Define `styles` using `StyleSheet.create`.
+   1. `container`:
+      * `flexDirection: 'row'`, `flexWrap: 'wrap'`, `justifyContent: 'space-between'`.
+   2. `cardContainer`:
+      * Fixed size `width: 300`, `height: 400`, blue background, border, rounded corners.
+      * Platform-specific shadows (`shadowColor`, `shadowOffset`, `elevation`).
+   3. `cardImageContainer`:
+      * Circular container for profile image with white background, border, shadow, and padding.
+   4. `cardImage`:
+      * Fixed size `width: 80`, `height: 80`.
+   5. `cardName`, `cardOccupation`, `cardDescription`:
+      * Styled text elements with font weight, margins, borders, italic style, and text shadows.
+   6. `cardThumbnail`:
+      * Applies `transform: [{ scale: 0.2 }]` to shrink the card when in thumbnail mode.
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Output
+* A scrollable, wrapping grid of profile cards.
+  * Tapping a thumbnail expands it to full size.
+  * Tapping a full-size card collapses it back to a thumbnail.
