@@ -23,9 +23,9 @@ class AddCountry extends React.Component {
       country,
       currency,
       id: uuid.v4(),
-      locations: [],
+      currencies: [],
     };
-    this.props.addCountry(newCountry);
+    this.props.addCountry(newCountry); 
     this.setState(
       {
         country: '',

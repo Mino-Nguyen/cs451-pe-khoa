@@ -14,11 +14,15 @@ export default class Countries extends React.Component {
   };
 
   navigate = (item) => {
-    this.props.navigation.navigate('Country', { country: item });
+    this.props.navigation.navigate('Country', {
+      country: item,
+      countries: this.props.countries,
+      addCurrency: this.props.addCurrency,
+    });
   };
 
   render() {
-    const { countries } = this.props; 
+    const { countries } = this.props;
     return (
       <ScrollView contentContainerStyle={[!countries.length && { flex: 1 }]}>
         <View style={[!countries.length && { justifyContent: 'center', flex: 1 }]}>
